@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 自动检索并注册Mapper -->
+    <context:component-scan base-package="team.yingyingmonster.ccs.database.mapper"/>
+    <context:property-placeholder file-encoding="UTF-8" location="classpath:database.properties"/>
+
+    <!--数据源配置-->
+    <bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+        <!--基本配置-->
+        <property name="driver" value="${Database.driver}"/>
+        <property name="driverUrl" value="${Database.url}"/>
+        <property name="user" value="${Database.user}"/>
+        <property name="password" value="${Database.password}"/>
+        <!--连接池配置-->
+        <property name="minimumConnectionCount" value="${DataSource.minConnection}"/>
+        <property name="maximumConnectionCount" value="${DataSource.maxConnection}"/>
+        <property name="prototypeCount" value="${DataSource.prototypeNum}"/>
+        <property name="houseKeepingTestSql" value="${DataSource.houseKeepingTestSql}"/>
+        <property name="statistics" value="${DataSource.statistics}"/>
+        <property name="statisticsLogLevel" value="${DataSource.statisticsLogLevel}"/>
+    </bean>
+
+    <!--会话工厂配置（由MyBatis的Spring插件接管）-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:team/yingyingmonster/ccs/database/mapper/mybatis.xml"/>
+    </bean>
+
+    <!--交由Spring扫描所有的Mapper，并注册为Bean-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="team.yingyingmonster.ccs.database.mapper"/>
+        <!--<property name="markerInterface" value="priv.juergenie.ssmtest.model.mapper.MapperMarker"/>-->
+    </bean>
+
+    <!--事务管理配置-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>
