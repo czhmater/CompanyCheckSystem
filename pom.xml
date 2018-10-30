@@ -56,7 +56,7 @@
     </properties>
 
     <dependencies>
-        <!-- CQLib代理增强依赖 -->
+        <!-- CGLib代理增强依赖 -->
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
@@ -210,6 +210,12 @@
             <artifactId>log4j-api</artifactId>
             <version>${version.log4j}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
+
 
         <!-- gson依赖 -->
         <dependency>
