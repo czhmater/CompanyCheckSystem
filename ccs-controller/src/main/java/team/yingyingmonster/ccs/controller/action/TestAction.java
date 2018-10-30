@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/test")
 public class TestAction {
-    @RequestMapping("/test.mvc")
+    @RequestMapping("/test")
     @ResponseBody
     public Object testHandler(@RequestAttribute("params") Object[] params) {
         return null;
