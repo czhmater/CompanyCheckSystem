@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>健康体检团检系统 - 主页</title>
+
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assets/css/toastr.min.css" rel="stylesheet"/>
+    <link href="/assets/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assets/css/juer-style.css" rel="stylesheet"/>
+</head>
+<body>
+<!--创建容器-->
+<div class="container-fluid">
+    <div class="row w-100">
+        <div class="col-12 w-100">
+            <span ></span>
+        </div>
+    </div>
+    <!--创建一个行-->
+    <div class="row justify-content-center align-self-center h-100">
+        <!--菜单栏-->
+        <div class="col-2" ng-app="ngApp">
+            <div class="btn-group ">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/assets/scripts/angular.min.js"></script>
+<script src="/assets/scripts/jquery.min.js"></script>
+<script src="/assets/scripts/bootstrap.min.js"></script>
+<script src="/assets/scripts/bootstrap.bundle.min.js"></script>
+<script src="/assets/scripts/toastr.min.js"></script>
+<script src="/assets/scripts/md5.min.js"></script>
+<script src="/assets/scripts/base64.min.js"></script>
+<script src="/assets/scripts/juer-script.js"></script>
+<script>
+    let ngApp = angular.module('ngApp', []);
+    ngApp.controller('leftMenuController', function($scope, $http) {
+        $scope.menuList = null;
+        $http.post("/common/getMenu")
+            .then(
+                function success(response) {
+                    $scope.menuList = response;
+                }, function error(response) {
+                    toastr.error("获取导航栏信息失败,可能是网络原因!");
+                });
+    });
+</script>
+</html>

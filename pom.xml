@@ -56,7 +56,7 @@
     </properties>
 
     <dependencies>
-        <!-- CQLib代理增强依赖 -->
+        <!-- CGLib代理增强依赖 -->
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
