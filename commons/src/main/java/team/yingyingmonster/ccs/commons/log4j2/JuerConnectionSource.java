@@ -1,6 +1,5 @@
 package team.yingyingmonster.ccs.commons.log4j2;
 
-import com.sun.istack.internal.NotNull;
 import org.apache.logging.log4j.core.appender.db.jdbc.ConnectionSource;
 
 import javax.sql.DataSource;
@@ -18,7 +17,7 @@ public class JuerConnectionSource implements ConnectionSource {
 
     private JuerConnectionSource() { }
 
-    public static JuerConnectionSource newInstance(@NotNull DataSource dataSource) {
+    public static JuerConnectionSource newInstance(DataSource dataSource) {
         JuerConnectionSource result = new JuerConnectionSource();
         result.dataSource = dataSource;
         return result;
