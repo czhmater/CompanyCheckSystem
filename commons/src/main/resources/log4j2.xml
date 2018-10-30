@@ -23,15 +23,15 @@
             <!--<column name="LOG_FROM" pattern="%c"/>-->
             <!--<column name="LOG_MESSAGE" pattern="%m"/>-->
         <!--</JDBC>-->
-        <!--<JDBC name="databaseAppender" tableName="LOG_TABLE">-->
-            <!--<ConnectionFactory class="team.yingyingmonster.ccs.commons.log4j2.JuerDataSource" method="getConnection" />-->
-            <!--<column name="LOGLEVEL" pattern="%p"/>-->
-            <!--<column name="LOGTIME"  isEventTimestamp="true"/>-->
-            <!--<column name="LOGLOCATE" pattern="%l"/>-->
-            <!--<column name="LOGTHREAD" pattern="%t"/>-->
-            <!--<column name="LOGCLASS" pattern="%c"/>-->
-            <!--<column name="LOGMESSAGE" pattern="%m"/>-->
-        <!--</JDBC>-->
+        <JDBC name="databaseAppender" tableName="LOG_TABLE">
+            <ConnectionFactory class="team.yingyingmonster.ccs.commons.log4j2.JuerDataSource" method="getConnection" />
+            <column name="LOGLEVEL" pattern="%p"/>
+            <column name="LOGTIME"  isEventTimestamp="true"/>
+            <column name="LOGLOCATE" pattern="%l"/>
+            <column name="LOGTHREAD" pattern="%t"/>
+            <column name="LOGCLASS" pattern="%c"/>
+            <column name="LOGMESSAGE" pattern="%m"/>
+        </JDBC>
     </Appenders>
     <Loggers>
         <Logger name="org.springframework" level="info"></Logger>
@@ -43,9 +43,9 @@
         <Logger name="console" level="debug" additivity="false">
             <AppenderRef ref="console"/>
         </Logger>
-        <!--<Logger name="jdbc" level="debug" additivity="false">-->
-            <!--<AppenderRef ref="databaseAppender"/>-->
-        <!--</Logger>-->
+        <Logger name="team.yingyingmonster.ccs" level="debug" additivity="false">
+            <AppenderRef ref="databaseAppender"/>
+        </Logger>
 
         <Root level="debug">
             <AppenderRef ref="console_layout2"/>
