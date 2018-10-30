@@ -13,4 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/gateway")
 public class GatewayAction {
+    @RequestMapping("/index")
+    public String index() {
+        return "gateway/index";
+    }
 }

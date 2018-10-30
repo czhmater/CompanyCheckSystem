@@ -1,11 +1,5 @@
 package team.yingyingmonster.ccs.commons;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Transactional;
-import team.yingyingmonster.ccs.commons.log4j2.JuerDataSource;
-
 /**
  * @author Juer Whang <br/>
  * - project: CompanyCheckSystem
