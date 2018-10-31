@@ -40,7 +40,9 @@
             </div>
         </div>
         <div class="col-10">
-
+            <iframe name="mainPageFrame" id="mainPageFrame">
+                用户操作页面.
+            </iframe>
         </div>
     </div>
 </div>
@@ -93,7 +95,8 @@
             $http.post("/common/logout")
                 .then(
                     function success(response) {
-                        $location.;
+                        alert("登出成功!");
+                        window.location.href = "/";
                     }, function error(response) {
                         console.error(response);
                         toastr.error("获取登入信息失败,可能是网络原因!");

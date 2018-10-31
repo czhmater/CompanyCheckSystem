@@ -25,7 +25,7 @@ import java.util.HashMap;
  **/
 
 @Controller
-@RequestMapping("/readQRcode")
+@RequestMapping("/read-qr-code")
 public class ReadQRcodeAction {
     public static final String FORMAT = "png";
     public static final String CHARTSET = "utf-8";
@@ -34,7 +34,7 @@ public class ReadQRcodeAction {
      * @param filePath
      * @return
      */
-    @RequestMapping("/getQRresult")
+    @RequestMapping("/get-qr-result")
     public String getQRresult(String filePath){
         Result result=QRresult(filePath);
         if (result != null) {
@@ -67,6 +67,4 @@ public class ReadQRcodeAction {
         }
         return result;
     }
-
-
 }
