@@ -248,6 +248,18 @@
             <version>${version.lombok}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!--二维码解析依赖-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -269,6 +281,7 @@
                     <configuration>
                         <source>${version.compiler}</source>
                         <target>${version.compiler}</target>
+                        <fork>true</fork>
                     </configuration>
                 </plugin>
                 <plugin>

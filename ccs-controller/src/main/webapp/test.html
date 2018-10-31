@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+水果：<input type="text" ng-model="name"/>
+<input type="button" value="添加" ng-click="add()"/>
+<input type="button" value="批量删除" ng-click="plsc()"/>
+
+
+<table border="1px" cellspacing="0px" cellpadding="0px" width="200px" height="30px">
+    <tr>
+        <td><input type="checkbox" ng-click="qx()"/></td>
+        <td>水果名称</td>
+        <td>操作</td>
+    </tr>
+
+    <tr ng-repeat="g in goods">
+        <td><input type="checkbox" name="ck" ng-click="ck($index)"></td>
+        <td>{{g.name}}</td>
+        <td><input type="button" ng-click="dele($index)" value="删除"/></td>
+    </tr>
+
+</table>
+
+
+<script src="/assets/scripts/angular.min.js"></script>
+<script src="/assets/scripts/jquery.min.js"></script>
+<script src="/assets/scripts/bootstrap.min.js"></script>
+<script src="/assets/scripts/bootstrap.bundle.min.js"></script>
+<script src="/assets/scripts/toastr.min.js"></script>
+<script src="/assets/scripts/md5.min.js"></script>
+<script src="/assets/scripts/base64.min.js"></script>
+<script src="/assets/scripts/juer-script.js"></script>
+<script type="text/javascript">
+    var mb = angular.module("myApp", []);//创建模板
+    mb.controller("myCtrl", function ($scope) {//创建控制
+
+//定义数组
+        $scope.goods = [];
+//添加的方法
+        $scope.add = function () {
+//创建对象
+            var go = {"flag": false, "name": $scope.name}
+//放进数组
+            $scope.goods.push(go);
+        }
+
+//删除一行
+        $scope.dele = function ($index) {
+
+            $scope.goods.splice($index, 1);
+        }
+
+
+//改变每行chekbox的状态
+        $scope.ck = function ($index) {
+
+            $scope.goods[$index].flag = !$scope.goods[$index].flag
+        }
+//批量删除
+        $scope.plsc = function () {
+//反着遍历
+            for (var i = $scope.goods.length - 1; i >= 0; i--) {
+                if ($scope.goods[i].flag) {
+                    $scope.goods.splice(i, 1);
+                }
+            }
+        }
+
+
+//全选
+        var qq = true;
+        $scope.qx = function () {
+//获取属性
+            var ck = $("input[name=ck]")
+            for (var i = 0; i < ck.length; i++) {
+
+                ck[i].checked = qq;
+
+//给每个数组中的ck赋值
+                $scope.goods[i].flag = qq;
+            }
+            qq = !qq;
+        }
+    });
+</script>
+
+</body>
+</html>
