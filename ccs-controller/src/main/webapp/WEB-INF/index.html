@@ -9,21 +9,40 @@
     <link href="/assets/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
     <link href="/assets/css/juer-style.css" rel="stylesheet"/>
 </head>
-<body>
+<!--加载一个Angular应用, 并配置一个控制器-->
+<body ng-app="ngApp">
 <!--创建容器-->
 <div class="container-fluid">
-    <div class="row w-100">
-        <div class="col-12 w-100">
-            <span ></span>
+    <div class="row" ng-controller="topUserShowController">
+        <div class="col-9">
+            欢迎您, {{user.accountName}}.
+        </div>
+        <div class="col-3">
+            <button class="btn btn-primary" ng-click="logout()">登出账号</button>
         </div>
     </div>
     <!--创建一个行-->
-    <div class="row justify-content-center align-self-center h-100">
+    <div class="row">
         <!--菜单栏-->
-        <div class="col-2" ng-app="ngApp">
-            <div class="btn-group ">
-
+        <div id="leftMenuContent" class="col-2 p-2 d-none" ng-controller="leftMenuController">
+            <div class="panel-box w-100">
+                <div class="panel-group" id="accordion" data-spy="scroll">
+                    <div class="panel panel-default" ng-repeat="menu in menuList">
+                        <div class="panel-heading">
+                            <span class="panel-title rectangle non-margin btn btn-block btn-primary"
+                                  ng-click="menuClick(menu)"
+                                  data-parent="#accordion">
+                                {{menu.menuName}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="col-10">
+            <iframe name="mainPageFrame" id="mainPageFrame">
+                用户操作页面.
+            </iframe>
         </div>
     </div>
 </div>
@@ -37,16 +56,52 @@
 <script src="/assets/scripts/base64.min.js"></script>
 <script src="/assets/scripts/juer-script.js"></script>
 <script>
+    // 创建angularjs模块
     let ngApp = angular.module('ngApp', []);
-    ngApp.controller('leftMenuController', function($scope, $http) {
-        $scope.menuList = null;
-        $http.post("/common/getMenu")
+
+    // 创建侧边导航栏控制器
+    ngApp.controller('leftMenuController', function ($scope, $http) {
+        $scope.menuList = [];
+        $http.post("/common/dummy-menu")
             .then(
                 function success(response) {
-                    $scope.menuList = response;
+                    $(response.data).each(function (i, v) {
+                        $scope.menuList.push(v);
+                    });
+                    $("#leftMenuContent").removeClass("d-none");
                 }, function error(response) {
+                    console.error(response);
                     toastr.error("获取导航栏信息失败,可能是网络原因!");
                 });
+
+        $scope.menuClick = function (button) {
+            alert(`some button on click!, name is "${button.menuName}", and url is "${button.menuUrl}"`);
+        };
+    });
+
+    // 创建顶边状态栏控制器
+    ngApp.controller('topUserShowController', function ($scope, $http, $location) {
+        $scope.user = {};
+        $http.post("/common/user-info")
+            .then(
+                function success(response) {
+                    $scope.user = response.data;
+                }, function error(response) {
+                    console.error(response);
+                    toastr.error("获取登入信息失败,可能是网络原因!");
+                });
+
+        $scope.logout = function () {
+            $http.post("/common/logout")
+                .then(
+                    function success(response) {
+                        alert("登出成功!");
+                        window.location.href = "/";
+                    }, function error(response) {
+                        console.error(response);
+                        toastr.error("获取登入信息失败,可能是网络原因!");
+                    });
+        }
     });
 </script>
 </html>
