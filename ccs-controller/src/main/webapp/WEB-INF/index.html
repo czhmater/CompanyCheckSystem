@@ -75,7 +75,10 @@
                 });
 
         $scope.menuClick = function (button) {
+            // 这句话可以注释掉,只是用来测试的.
             alert(`some button on click!, name is "${button.menuName}", and url is "${button.menuUrl}"`);
+            // 使页面框架发生跳转.
+            window.frames["mainPageFrame"].location.href = button.menuUrl;
         };
     });
 
