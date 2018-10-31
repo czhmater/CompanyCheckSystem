@@ -3,18 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>总检</title>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assets/css/toastr.min.css" rel="stylesheet"/>
+    <link href="/assets/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
+    <link href="/assets/css/juer-style.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>体检人</th>
-                    <th>性别</th>
-                    <th></th>套餐</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
+<h1 class="text-center">总检人员表</h1>
+<div class="container">
+    <table class="table table-bordered table-hover">
+        <thead class="text-center">
+        <tr>
+            <th>体检人</th>
+            <th>性别</th>
+            <th>体检套餐</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody class="text-center ">
+        <tr>
+            <td>张三</td>
+            <td>男</td>
+            <td>入职体检</td>
+            <td >
+                <button type="button" class="btn btn-primary">总结</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+        <ul class="pagination float-right">
+            <li class="page-item"><a class="page-link" href="#">首页</a></li>
+            <li class="page-item"><a class="page-link" href="#">上一页</a></li>
+            <li class="page-item"><a class="page-link" href="#">下一页</a></li>
+            <li class="page-item"><a class="page-link" href="#">末页</a></li>
+        </ul>
+</div>
 </body>
 </html>
