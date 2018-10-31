@@ -16,6 +16,9 @@
           <element id="archive" name="commons-1.0-SNAPSHOT.jar">
             <element id="module-output" name="commons" />
           </element>
+          <element id="archive" name="ccs-controller-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="ccscontroller" />
+          </element>
           <element id="library" level="project" name="Maven: cglib:cglib:3.2.8" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm:6.2.1" />
           <element id="library" level="project" name="Maven: org.apache.ant:ant:1.10.3" />
