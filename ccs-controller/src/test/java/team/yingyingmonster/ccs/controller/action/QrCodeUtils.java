@@ -1,13 +1,14 @@
 package team.yingyingmonster.ccs.controller.action;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import team.yingyingmonster.ccs.commons.json.JsonUtil;
+import team.yingyingmonster.ccs.commons.json.JsonUtil.TYPE;
+import team.yingyingmonster.ccs.controller.bean.FiveElements;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -41,7 +42,7 @@ public class QrCodeUtils {
         if (result != null) {
             System.out.println("二维码内容：" + result.getText());
             if (result.getText() != null) {
-                FiveElements fiveElements = JSONObject.parseObject(result.getText(), FiveElements.class);
+                FiveElements fiveElements = JsonUtil.jsonToBean(result.getText(), FiveElements.class);
                 System.out.println(fiveElements);
             }
             System.out.println("二维码格式：" + result.getBarcodeFormat());
@@ -67,7 +68,7 @@ public class QrCodeUtils {
         fiveElements.setIdType("I");
         fiveElements.setIdno("370983");
         fiveElements.setMobile("1805310");
-        String contents = JSON.toJSONString(fiveElements);
+        String contents = JsonUtil.beanToJson(fiveElements, TYPE.NORMAL);
         HashMap<EncodeHintType, Object> hints = new HashMap<>();
         hints.put(EncodeHintType.CHARACTER_SET, CHARTSET);
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
