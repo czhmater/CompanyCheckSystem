@@ -40,7 +40,9 @@
             </div>
         </div>
         <div class="col-10">
-
+            <iframe name="mainPageFrame" id="mainPageFrame">
+                用户操作页面.
+            </iframe>
         </div>
     </div>
 </div>
@@ -73,13 +75,17 @@
                 });
 
         $scope.menuClick = function (button) {
+            // 这句话可以注释掉,只是用来测试的.
             alert(`some button on click!, name is "${button.menuName}", and url is "${button.menuUrl}"`);
+            // 使页面框架发生跳转.
+            window.frames["mainPageFrame"].location.href = button.menuUrl;
         };
     });
 
     // 创建顶边状态栏控制器
     ngApp.controller('topUserShowController', function ($scope, $http, $location) {
         $scope.user = {};
+
         $http.post("/common/user-info")
             .then(
                 function success(response) {
@@ -93,7 +99,8 @@
             $http.post("/common/logout")
                 .then(
                     function success(response) {
-                        $location.;
+                        alert("登出成功!");
+                        window.location.href = "/";
                     }, function error(response) {
                         console.error(response);
                         toastr.error("获取登入信息失败,可能是网络原因!");
