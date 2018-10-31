@@ -85,6 +85,7 @@
     // 创建顶边状态栏控制器
     ngApp.controller('topUserShowController', function ($scope, $http, $location) {
         $scope.user = {};
+
         $http.post("/common/user-info")
             .then(
                 function success(response) {
