@@ -16,9 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class TotalInspectionAction {
 
+    @RequestMapping("/index")
+    public String index(){
+        return "totalinspection/total-inspection";
+    }
+
     @RequestMapping("/write")
     public String writeTotalInspection(){
         return "";
     }
+
 
 }
