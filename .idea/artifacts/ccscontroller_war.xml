@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="ccscontroller:war">
-    <output-path>$PROJECT_DIR$/ccs-controller/target</output-path>
+  <artifact type="war" build-on-make="true" name="ccscontroller:war">
+    <output-path />
     <root id="archive" name="ccs-controller.war">
       <element id="artifact" artifact-name="ccscontroller:war exploded" />
     </root>
