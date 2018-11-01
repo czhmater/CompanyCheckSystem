@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="ccscontroller:war exploded">
-    <output-path>$PROJECT_DIR$/ccs-controller/target/ccs-controller</output-path>
+  <artifact type="exploded-war" build-on-make="true" name="ccscontroller:war exploded">
+    <output-path />
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

@@ -18,7 +18,7 @@ public class UserBean {
     private String userName;
     private Integer userGender;
     private Integer userAge;
-    private Integer userCode;
+    private String userCardCode;
     private String userPhone;
 
     private CompanyBean companyByCompanyId;
