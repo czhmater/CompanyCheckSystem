@@ -40,7 +40,9 @@
             </div>
         </div>
         <div class="col-10">
-
+            <iframe name="mainPageFrame" id="mainPageFrame">
+                用户操作页面.
+            </iframe>
         </div>
     </div>
 </div>
@@ -60,26 +62,36 @@
     // 创建侧边导航栏控制器
     ngApp.controller('leftMenuController', function ($scope, $http) {
         $scope.menuList = [];
-        $http.post("/common/dummy-menu")
+        $http.post("/common/get-menu")
             .then(
                 function success(response) {
-                    $(response.data).each(function (i, v) {
-                        $scope.menuList.push(v);
-                    });
-                    $("#leftMenuContent").removeClass("d-none");
+                    resultMessage = response.data;
+                    if (resultMessage.resultState == 200) {
+                        $(resultMessage.resultData).each(function (i, v) {
+                            $scope.menuList.push(v);
+                        });
+                        $("#leftMenuContent").removeClass("d-none");
+                    } else {
+                        console.error(response);
+                        toastr.error("获取导航栏信息失败,可能是网络原因!");
+                    }
                 }, function error(response) {
                     console.error(response);
                     toastr.error("获取导航栏信息失败,可能是网络原因!");
                 });
 
         $scope.menuClick = function (button) {
+            // 这句话可以注释掉,只是用来测试的.
             alert(`some button on click!, name is "${button.menuName}", and url is "${button.menuUrl}"`);
+            // 使页面框架发生跳转.
+            window.frames["mainPageFrame"].location.href = button.menuUrl;
         };
     });
 
     // 创建顶边状态栏控制器
     ngApp.controller('topUserShowController', function ($scope, $http, $location) {
         $scope.user = {};
+
         $http.post("/common/user-info")
             .then(
                 function success(response) {
@@ -93,7 +105,8 @@
             $http.post("/common/logout")
                 .then(
                     function success(response) {
-                        $location.;
+                        alert("登出成功!");
+                        window.location.href = "/";
                     }, function error(response) {
                         console.error(response);
                         toastr.error("获取登入信息失败,可能是网络原因!");

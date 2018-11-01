@@ -58,15 +58,6 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.46</version>
         </dependency>
-
-
-        <!--测试二维码的依赖结束-->
-
-
-
-
-
-
     </dependencies>
 
     <build>

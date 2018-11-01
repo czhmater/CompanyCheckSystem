@@ -1,7 +1,6 @@
 package team.yingyingmonster.ccs.commons.log4j2;
 
 import org.apache.logging.log4j.core.appender.db.jdbc.ConnectionSource;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
